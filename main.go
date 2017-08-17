@@ -6,6 +6,5 @@ import (
 
 //Run the telegram game bot on the server
 func main() {
-
 	core.Run()
 }
