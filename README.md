@@ -21,7 +21,7 @@ Each application stores in separate folder and has its own Makefile.
 
 ### How to import package
 
-$  glide get \<some package\>
+    $  glide get <some package>
 
 Don't use `go get <some package>`
 
@@ -31,4 +31,3 @@ Don't use `go get <some package>`
 * https://github.com/go-telegram-bot-api/telegram-bot-api
 * https://github.com/alecthomas/gometalinter
 * https://docs.travis-ci.com/user/languages/go/
-*
