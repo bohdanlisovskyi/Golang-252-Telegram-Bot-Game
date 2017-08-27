@@ -1,4 +1,20 @@
 package: github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game
 import:
+- package: github.com/8tomat8/SSU-Golang-252-Chat
+  subpackages:
+  - loger
+- package: github.com/Sirupsen/logrus
+  version: ^1.0.3
+- package: github.com/garyburd/redigo
+  version: ^1.1.0
+  subpackages:
+  - redis
+- package: github.com/jinzhu/gorm
+  version: ^1.0.0
+  subpackages:
+  - dialects/postgres
 - package: gopkg.in/telegram-bot-api.v4
-  version: ~4.6.0
+  version: ^4.6.0
+- package: github.com/mediocregopher/radix.v2
+  subpackages:
+  - '...'
