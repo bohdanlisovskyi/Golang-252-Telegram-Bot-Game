@@ -15,11 +15,11 @@ func GetRedisConn() (conn *redis.Client, err error) {
 	if err != nil {
 		loger.Log.Error(err)
 	}
-	loger.Log.Info("pool has been created")
+	//loger.Log.Info("pool has been created")
 	conn, err = p.Get()
 	if err != nil {
 		loger.Log.Error(err)
 	}
-	loger.Log.Info("connection has been established")
+	//loger.Log.Info("connection has been established")
 	return conn, err
 }
