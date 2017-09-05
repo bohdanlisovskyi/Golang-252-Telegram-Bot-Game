@@ -3,7 +3,7 @@ package core
 import (
 	"os"
 
-	"github.com/8tomat8/SSU-Golang-252-Chat/loger"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/router"
 	"github.com/yanzay/tbot"
 )
