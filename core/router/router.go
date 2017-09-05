@@ -14,17 +14,18 @@ type Route struct {
 
 type Routes []Route
 
+// build router from routs in listener.go
 func NewRouter(bot *tbot.Server) *tbot.Server {
 
 	for _, route := range routes {
-		switch route.Type {
-		case "text":
+
+		if route.Reply != "" {
 			bot.Handle(route.Path, route.Reply)
-		case "func":
-			bot.HandleFunc(route.Path, route.HandlerFunc)
-		case "default":
-			bot.HandleDefault(handlers.EchoHandler)
+			continue
 		}
+		bot.HandleFunc(route.Path, route.HandlerFunc)
 	}
+
+	bot.HandleDefault(handlers.EchoHandler)
 	return bot
 }
