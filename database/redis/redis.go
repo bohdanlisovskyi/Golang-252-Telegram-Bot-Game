@@ -1,9 +1,9 @@
 package redis
 
 import (
-	"github.com/8tomat8/SSU-Golang-252-Chat/loger"
 	"github.com/mediocregopher/radix.v2/pool"
 	"github.com/mediocregopher/radix.v2/redis"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
 )
 
 const NETWORK = "tcp"

@@ -1,4 +1,6 @@
-package postgres
+package main
+
+import "github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
 
 type Planet struct {
 	Id          int `gorm:"primary_key;AUTO_INCREMENT"`
@@ -74,7 +76,7 @@ type Fleet struct {
 
 type ShipInFleet struct {
 	ShipId  int `gorm:"primary_key;not null;unique"`
-	FleetId int `gorm:"primary_key;not null;unique"`
+	FleetId int`gorm:"primary_key;not null;unique"`
 }
 
 type Resource struct {
@@ -131,4 +133,31 @@ type DokUpdate struct {
 	NextDokkpi int
 	StartTime  int
 	EndTime    int
+}
+
+// Before create tables, create database on your local machine manually,
+// using following credentials:
+// database name - testdb;
+// user - roor;
+// password - root, or chose your's and edit args in file localConnection.go
+func main() {
+	db, err := LocalPostgresConnection()
+	if err != nil {
+		loger.Log.Errorf("error: ", err)
+	}
+	db.CreateTable(&Planet{})
+	db.CreateTable(&Citycenter{})
+	db.CreateTable(&IronMine{})
+	db.CreateTable(&CrystalMine{})
+	db.CreateTable(&Cosmodrome{})
+	db.CreateTable(&Dok{})
+	db.CreateTable(&Fleet{})
+	db.CreateTable(&Ship{})
+	db.CreateTable(&ShipInFleet{})
+	db.CreateTable(&CitycenterUpdate{})
+	db.CreateTable(&IronmineUpdate{})
+	db.CreateTable(&CrystalmineUpdate{})
+	db.CreateTable(&ShipUpdate{})
+	db.CreateTable(&DokUpdate{})
+	db.CreateTable(&Resource{})
 }
