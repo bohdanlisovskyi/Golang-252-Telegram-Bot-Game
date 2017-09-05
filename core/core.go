@@ -1,15 +1,29 @@
 package core
 
 import (
+	"os"
+
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
-	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/vendor/gopkg.in/telegram-bot-api.v4"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/router"
+	"github.com/yanzay/tbot"
 )
 
 func Run() {
-	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken")
-	if err != nil {
-		loger.Log.Panic(err)
+	token := os.Getenv("TELEGRAM_TOKEN")
+
+	if token == "" {
+		loger.Log.Fatal("Token Empty")
 	}
 
-	bot.Debug = true
+	_botServerUp(token)
+}
+
+func _botServerUp(token string) {
+	bot, err := tbot.NewServer(token)
+
+	if err != nil {
+		loger.Log.Fatal(err)
+	}
+
+	loger.Log.Fatal(router.NewRouter(bot).ListenAndServe())
 }
