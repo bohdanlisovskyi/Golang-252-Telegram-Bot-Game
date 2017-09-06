@@ -134,7 +134,7 @@ type DokUpdate struct {
 	StartTime  int
 	EndTime    int
 }
-
+// You can use script (./dbScript/gamebotdb)for creation of database or use following functionality.
 // Before create tables, create database on your local machine manually,
 // using following credentials:
 // database name - testdb;

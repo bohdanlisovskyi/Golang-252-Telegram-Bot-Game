@@ -18,3 +18,5 @@ import:
 - package: github.com/mediocregopher/radix.v2
   subpackages:
   - '...'
+- package: github.com/yanzay/tbot
+  version: ~0.3.1

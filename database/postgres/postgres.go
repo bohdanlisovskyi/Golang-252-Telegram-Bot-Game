@@ -17,7 +17,7 @@ func GetPostgresConnection() (db *gorm.DB, err error) {
 		if err != nil {
 			loger.Log.Errorf("Error during connection to Postgres has occurred %s", err.Error())
 		}else {
-			loger.Log.Info("connection established")
+			loger.Log.Info("connection to Pg has been established")
 		}
 	})
 	return db, err
