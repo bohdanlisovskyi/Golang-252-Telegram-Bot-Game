@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.8
 -- Dumped by pg_dump version 9.5.8
 
--- Started on 2017-09-06 09:16:30 EEST
+-- Started on 2017-09-08 16:18:36 EEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -17,7 +17,7 @@ SET row_security = off;
 
 DROP DATABASE gamebotdb;
 --
--- TOC entry 2349 (class 1262 OID 17383)
+-- TOC entry 2312 (class 1262 OID 17383)
 -- Name: gamebotdb; Type: DATABASE; Schema: -; Owner: root
 --
 
@@ -45,7 +45,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2352 (class 0 OID 0)
+-- TOC entry 2315 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -60,13 +60,13 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 201 (class 1259 OID 18835)
+-- TOC entry 199 (class 1259 OID 19216)
 -- Name: citycenter_updates; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE citycenter_updates (
     id integer NOT NULL,
-    citycenter_id integer NOT NULL,
+    citycenter_id integer,
     next_level integer,
     next_peoplemaxamount integer,
     next_citycenterkpi integer,
@@ -78,7 +78,7 @@ CREATE TABLE citycenter_updates (
 ALTER TABLE citycenter_updates OWNER TO root;
 
 --
--- TOC entry 200 (class 1259 OID 18833)
+-- TOC entry 198 (class 1259 OID 19214)
 -- Name: citycenter_updates_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -93,8 +93,8 @@ CREATE SEQUENCE citycenter_updates_id_seq
 ALTER TABLE citycenter_updates_id_seq OWNER TO root;
 
 --
--- TOC entry 2353 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 2316 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: citycenter_updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -102,7 +102,7 @@ ALTER SEQUENCE citycenter_updates_id_seq OWNED BY citycenter_updates.id;
 
 
 --
--- TOC entry 184 (class 1259 OID 18736)
+-- TOC entry 184 (class 1259 OID 19130)
 -- Name: citycenters; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -119,7 +119,7 @@ CREATE TABLE citycenters (
 ALTER TABLE citycenters OWNER TO root;
 
 --
--- TOC entry 183 (class 1259 OID 18734)
+-- TOC entry 183 (class 1259 OID 19128)
 -- Name: citycenters_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -134,7 +134,7 @@ CREATE SEQUENCE citycenters_id_seq
 ALTER TABLE citycenters_id_seq OWNER TO root;
 
 --
--- TOC entry 2354 (class 0 OID 0)
+-- TOC entry 2317 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: citycenters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -143,13 +143,58 @@ ALTER SEQUENCE citycenters_id_seq OWNED BY citycenters.id;
 
 
 --
--- TOC entry 190 (class 1259 OID 18775)
+-- TOC entry 209 (class 1259 OID 19262)
+-- Name: cosmodrome_updates; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE cosmodrome_updates (
+    id integer NOT NULL,
+    cosmodrome_id integer,
+    next_level integer,
+    next_cosmodrkpi integer,
+    next_shipmaxamount integer,
+    next_fleetsmaxamount integer,
+    start_time integer,
+    end_time integer
+);
+
+
+ALTER TABLE cosmodrome_updates OWNER TO root;
+
+--
+-- TOC entry 208 (class 1259 OID 19260)
+-- Name: cosmodrome_updates_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE cosmodrome_updates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cosmodrome_updates_id_seq OWNER TO root;
+
+--
+-- TOC entry 2318 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: cosmodrome_updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE cosmodrome_updates_id_seq OWNED BY cosmodrome_updates.id;
+
+
+--
+-- TOC entry 190 (class 1259 OID 19169)
 -- Name: cosmodromes; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE cosmodromes (
     id integer NOT NULL,
     planet_name text NOT NULL,
+    level integer,
+    cosmodr_kpi integer,
     ship_amount integer,
     ship_max_amount integer,
     fleets_amount integer,
@@ -160,7 +205,7 @@ CREATE TABLE cosmodromes (
 ALTER TABLE cosmodromes OWNER TO root;
 
 --
--- TOC entry 189 (class 1259 OID 18773)
+-- TOC entry 189 (class 1259 OID 19167)
 -- Name: cosmodromes_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -175,7 +220,7 @@ CREATE SEQUENCE cosmodromes_id_seq
 ALTER TABLE cosmodromes_id_seq OWNER TO root;
 
 --
--- TOC entry 2355 (class 0 OID 0)
+-- TOC entry 2319 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: cosmodromes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -184,7 +229,7 @@ ALTER SEQUENCE cosmodromes_id_seq OWNED BY cosmodromes.id;
 
 
 --
--- TOC entry 188 (class 1259 OID 18762)
+-- TOC entry 188 (class 1259 OID 19156)
 -- Name: crystal_mines; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -201,7 +246,7 @@ CREATE TABLE crystal_mines (
 ALTER TABLE crystal_mines OWNER TO root;
 
 --
--- TOC entry 187 (class 1259 OID 18760)
+-- TOC entry 187 (class 1259 OID 19154)
 -- Name: crystal_mines_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -216,7 +261,7 @@ CREATE SEQUENCE crystal_mines_id_seq
 ALTER TABLE crystal_mines_id_seq OWNER TO root;
 
 --
--- TOC entry 2356 (class 0 OID 0)
+-- TOC entry 2320 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: crystal_mines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -225,13 +270,13 @@ ALTER SEQUENCE crystal_mines_id_seq OWNED BY crystal_mines.id;
 
 
 --
--- TOC entry 205 (class 1259 OID 18855)
+-- TOC entry 203 (class 1259 OID 19233)
 -- Name: crystalmine_updates; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE crystalmine_updates (
     id integer NOT NULL,
-    crystalmine_id integer NOT NULL,
+    crystalmine_id integer,
     next_level integer,
     next_peoplemaxamount integer,
     next_minekpi integer,
@@ -243,7 +288,7 @@ CREATE TABLE crystalmine_updates (
 ALTER TABLE crystalmine_updates OWNER TO root;
 
 --
--- TOC entry 204 (class 1259 OID 18853)
+-- TOC entry 202 (class 1259 OID 19231)
 -- Name: crystalmine_updates_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -258,8 +303,8 @@ CREATE SEQUENCE crystalmine_updates_id_seq
 ALTER TABLE crystalmine_updates_id_seq OWNER TO root;
 
 --
--- TOC entry 2357 (class 0 OID 0)
--- Dependencies: 204
+-- TOC entry 2321 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: crystalmine_updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -267,87 +312,7 @@ ALTER SEQUENCE crystalmine_updates_id_seq OWNED BY crystalmine_updates.id;
 
 
 --
--- TOC entry 209 (class 1259 OID 18875)
--- Name: dok_updates; Type: TABLE; Schema: public; Owner: root
---
-
-CREATE TABLE dok_updates (
-    id integer NOT NULL,
-    dok_id integer NOT NULL,
-    next_level integer,
-    next_dokkpi integer,
-    start_time integer,
-    end_time integer
-);
-
-
-ALTER TABLE dok_updates OWNER TO root;
-
---
--- TOC entry 208 (class 1259 OID 18873)
--- Name: dok_updates_id_seq; Type: SEQUENCE; Schema: public; Owner: root
---
-
-CREATE SEQUENCE dok_updates_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE dok_updates_id_seq OWNER TO root;
-
---
--- TOC entry 2358 (class 0 OID 0)
--- Dependencies: 208
--- Name: dok_updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
---
-
-ALTER SEQUENCE dok_updates_id_seq OWNED BY dok_updates.id;
-
-
---
--- TOC entry 192 (class 1259 OID 18788)
--- Name: doks; Type: TABLE; Schema: public; Owner: root
---
-
-CREATE TABLE doks (
-    id integer NOT NULL,
-    planet_name text NOT NULL,
-    level integer,
-    dok_kpi integer
-);
-
-
-ALTER TABLE doks OWNER TO root;
-
---
--- TOC entry 191 (class 1259 OID 18786)
--- Name: doks_id_seq; Type: SEQUENCE; Schema: public; Owner: root
---
-
-CREATE SEQUENCE doks_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE doks_id_seq OWNER TO root;
-
---
--- TOC entry 2359 (class 0 OID 0)
--- Dependencies: 191
--- Name: doks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
---
-
-ALTER SEQUENCE doks_id_seq OWNED BY doks.id;
-
-
---
--- TOC entry 194 (class 1259 OID 18801)
+-- TOC entry 192 (class 1259 OID 19182)
 -- Name: fleets; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -365,7 +330,7 @@ CREATE TABLE fleets (
 ALTER TABLE fleets OWNER TO root;
 
 --
--- TOC entry 193 (class 1259 OID 18799)
+-- TOC entry 191 (class 1259 OID 19180)
 -- Name: fleets_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -380,8 +345,8 @@ CREATE SEQUENCE fleets_id_seq
 ALTER TABLE fleets_id_seq OWNER TO root;
 
 --
--- TOC entry 2360 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2322 (class 0 OID 0)
+-- Dependencies: 191
 -- Name: fleets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -389,7 +354,7 @@ ALTER SEQUENCE fleets_id_seq OWNED BY fleets.id;
 
 
 --
--- TOC entry 186 (class 1259 OID 18749)
+-- TOC entry 186 (class 1259 OID 19143)
 -- Name: iron_mines; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -406,7 +371,7 @@ CREATE TABLE iron_mines (
 ALTER TABLE iron_mines OWNER TO root;
 
 --
--- TOC entry 185 (class 1259 OID 18747)
+-- TOC entry 185 (class 1259 OID 19141)
 -- Name: iron_mines_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -421,7 +386,7 @@ CREATE SEQUENCE iron_mines_id_seq
 ALTER TABLE iron_mines_id_seq OWNER TO root;
 
 --
--- TOC entry 2361 (class 0 OID 0)
+-- TOC entry 2323 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: iron_mines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -430,13 +395,13 @@ ALTER SEQUENCE iron_mines_id_seq OWNED BY iron_mines.id;
 
 
 --
--- TOC entry 203 (class 1259 OID 18845)
+-- TOC entry 201 (class 1259 OID 19225)
 -- Name: ironmine_updates; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE ironmine_updates (
     id integer NOT NULL,
-    ironmine_id integer NOT NULL,
+    ironmine_id integer,
     next_level integer,
     next_peoplemaxamount integer,
     next_minekpi integer,
@@ -448,7 +413,7 @@ CREATE TABLE ironmine_updates (
 ALTER TABLE ironmine_updates OWNER TO root;
 
 --
--- TOC entry 202 (class 1259 OID 18843)
+-- TOC entry 200 (class 1259 OID 19223)
 -- Name: ironmine_updates_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -463,8 +428,8 @@ CREATE SEQUENCE ironmine_updates_id_seq
 ALTER TABLE ironmine_updates_id_seq OWNER TO root;
 
 --
--- TOC entry 2362 (class 0 OID 0)
--- Dependencies: 202
+-- TOC entry 2324 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: ironmine_updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -472,7 +437,7 @@ ALTER SEQUENCE ironmine_updates_id_seq OWNED BY ironmine_updates.id;
 
 
 --
--- TOC entry 182 (class 1259 OID 18723)
+-- TOC entry 182 (class 1259 OID 19117)
 -- Name: planets; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -489,7 +454,7 @@ CREATE TABLE planets (
 ALTER TABLE planets OWNER TO root;
 
 --
--- TOC entry 181 (class 1259 OID 18721)
+-- TOC entry 181 (class 1259 OID 19115)
 -- Name: planets_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -504,7 +469,7 @@ CREATE SEQUENCE planets_id_seq
 ALTER TABLE planets_id_seq OWNER TO root;
 
 --
--- TOC entry 2363 (class 0 OID 0)
+-- TOC entry 2325 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: planets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
@@ -513,7 +478,7 @@ ALTER SEQUENCE planets_id_seq OWNED BY planets.id;
 
 
 --
--- TOC entry 211 (class 1259 OID 18885)
+-- TOC entry 207 (class 1259 OID 19249)
 -- Name: resources; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -528,7 +493,7 @@ CREATE TABLE resources (
 ALTER TABLE resources OWNER TO root;
 
 --
--- TOC entry 210 (class 1259 OID 18883)
+-- TOC entry 206 (class 1259 OID 19247)
 -- Name: resources_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -543,8 +508,8 @@ CREATE SEQUENCE resources_id_seq
 ALTER TABLE resources_id_seq OWNER TO root;
 
 --
--- TOC entry 2364 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 2326 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -552,7 +517,7 @@ ALTER SEQUENCE resources_id_seq OWNED BY resources.id;
 
 
 --
--- TOC entry 199 (class 1259 OID 18822)
+-- TOC entry 197 (class 1259 OID 19203)
 -- Name: ship_in_fleets; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -565,7 +530,7 @@ CREATE TABLE ship_in_fleets (
 ALTER TABLE ship_in_fleets OWNER TO root;
 
 --
--- TOC entry 198 (class 1259 OID 18820)
+-- TOC entry 196 (class 1259 OID 19201)
 -- Name: ship_in_fleets_fleet_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -580,8 +545,8 @@ CREATE SEQUENCE ship_in_fleets_fleet_id_seq
 ALTER TABLE ship_in_fleets_fleet_id_seq OWNER TO root;
 
 --
--- TOC entry 2365 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 2327 (class 0 OID 0)
+-- Dependencies: 196
 -- Name: ship_in_fleets_fleet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -589,7 +554,7 @@ ALTER SEQUENCE ship_in_fleets_fleet_id_seq OWNED BY ship_in_fleets.fleet_id;
 
 
 --
--- TOC entry 197 (class 1259 OID 18818)
+-- TOC entry 195 (class 1259 OID 19199)
 -- Name: ship_in_fleets_ship_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -604,8 +569,8 @@ CREATE SEQUENCE ship_in_fleets_ship_id_seq
 ALTER TABLE ship_in_fleets_ship_id_seq OWNER TO root;
 
 --
--- TOC entry 2366 (class 0 OID 0)
--- Dependencies: 197
+-- TOC entry 2328 (class 0 OID 0)
+-- Dependencies: 195
 -- Name: ship_in_fleets_ship_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -613,13 +578,13 @@ ALTER SEQUENCE ship_in_fleets_ship_id_seq OWNED BY ship_in_fleets.ship_id;
 
 
 --
--- TOC entry 207 (class 1259 OID 18865)
+-- TOC entry 205 (class 1259 OID 19241)
 -- Name: ship_updates; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE ship_updates (
     id integer NOT NULL,
-    ship_id integer NOT NULL,
+    ship_id integer,
     next_level integer,
     next_hitrate integer,
     next_loadcapacity integer,
@@ -631,7 +596,7 @@ CREATE TABLE ship_updates (
 ALTER TABLE ship_updates OWNER TO root;
 
 --
--- TOC entry 206 (class 1259 OID 18863)
+-- TOC entry 204 (class 1259 OID 19239)
 -- Name: ship_updates_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -646,8 +611,8 @@ CREATE SEQUENCE ship_updates_id_seq
 ALTER TABLE ship_updates_id_seq OWNER TO root;
 
 --
--- TOC entry 2367 (class 0 OID 0)
--- Dependencies: 206
+-- TOC entry 2329 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: ship_updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -655,7 +620,7 @@ ALTER SEQUENCE ship_updates_id_seq OWNED BY ship_updates.id;
 
 
 --
--- TOC entry 196 (class 1259 OID 18812)
+-- TOC entry 194 (class 1259 OID 19193)
 -- Name: ships; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -665,7 +630,6 @@ CREATE TABLE ships (
     level integer,
     hit_rate integer,
     health integer,
-    max_health integer,
     load_capacity integer
 );
 
@@ -673,7 +637,7 @@ CREATE TABLE ships (
 ALTER TABLE ships OWNER TO root;
 
 --
--- TOC entry 195 (class 1259 OID 18810)
+-- TOC entry 193 (class 1259 OID 19191)
 -- Name: ships_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -688,8 +652,8 @@ CREATE SEQUENCE ships_id_seq
 ALTER TABLE ships_id_seq OWNER TO root;
 
 --
--- TOC entry 2368 (class 0 OID 0)
--- Dependencies: 195
+-- TOC entry 2330 (class 0 OID 0)
+-- Dependencies: 193
 -- Name: ships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -697,7 +661,7 @@ ALTER SEQUENCE ships_id_seq OWNED BY ships.id;
 
 
 --
--- TOC entry 2123 (class 2604 OID 18838)
+-- TOC entry 2115 (class 2604 OID 19219)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -705,7 +669,7 @@ ALTER TABLE ONLY citycenter_updates ALTER COLUMN id SET DEFAULT nextval('citycen
 
 
 --
--- TOC entry 2114 (class 2604 OID 18739)
+-- TOC entry 2107 (class 2604 OID 19133)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -713,7 +677,15 @@ ALTER TABLE ONLY citycenters ALTER COLUMN id SET DEFAULT nextval('citycenters_id
 
 
 --
--- TOC entry 2117 (class 2604 OID 18778)
+-- TOC entry 2120 (class 2604 OID 19265)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY cosmodrome_updates ALTER COLUMN id SET DEFAULT nextval('cosmodrome_updates_id_seq'::regclass);
+
+
+--
+-- TOC entry 2110 (class 2604 OID 19172)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -721,7 +693,7 @@ ALTER TABLE ONLY cosmodromes ALTER COLUMN id SET DEFAULT nextval('cosmodromes_id
 
 
 --
--- TOC entry 2116 (class 2604 OID 18765)
+-- TOC entry 2109 (class 2604 OID 19159)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -729,7 +701,7 @@ ALTER TABLE ONLY crystal_mines ALTER COLUMN id SET DEFAULT nextval('crystal_mine
 
 
 --
--- TOC entry 2125 (class 2604 OID 18858)
+-- TOC entry 2117 (class 2604 OID 19236)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -737,23 +709,7 @@ ALTER TABLE ONLY crystalmine_updates ALTER COLUMN id SET DEFAULT nextval('crysta
 
 
 --
--- TOC entry 2127 (class 2604 OID 18878)
--- Name: id; Type: DEFAULT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY dok_updates ALTER COLUMN id SET DEFAULT nextval('dok_updates_id_seq'::regclass);
-
-
---
--- TOC entry 2118 (class 2604 OID 18791)
--- Name: id; Type: DEFAULT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY doks ALTER COLUMN id SET DEFAULT nextval('doks_id_seq'::regclass);
-
-
---
--- TOC entry 2119 (class 2604 OID 18804)
+-- TOC entry 2111 (class 2604 OID 19185)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -761,7 +717,7 @@ ALTER TABLE ONLY fleets ALTER COLUMN id SET DEFAULT nextval('fleets_id_seq'::reg
 
 
 --
--- TOC entry 2115 (class 2604 OID 18752)
+-- TOC entry 2108 (class 2604 OID 19146)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -769,7 +725,7 @@ ALTER TABLE ONLY iron_mines ALTER COLUMN id SET DEFAULT nextval('iron_mines_id_s
 
 
 --
--- TOC entry 2124 (class 2604 OID 18848)
+-- TOC entry 2116 (class 2604 OID 19228)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -777,7 +733,7 @@ ALTER TABLE ONLY ironmine_updates ALTER COLUMN id SET DEFAULT nextval('ironmine_
 
 
 --
--- TOC entry 2113 (class 2604 OID 18726)
+-- TOC entry 2106 (class 2604 OID 19120)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -785,7 +741,7 @@ ALTER TABLE ONLY planets ALTER COLUMN id SET DEFAULT nextval('planets_id_seq'::r
 
 
 --
--- TOC entry 2128 (class 2604 OID 18888)
+-- TOC entry 2119 (class 2604 OID 19252)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -793,7 +749,7 @@ ALTER TABLE ONLY resources ALTER COLUMN id SET DEFAULT nextval('resources_id_seq
 
 
 --
--- TOC entry 2121 (class 2604 OID 18825)
+-- TOC entry 2113 (class 2604 OID 19206)
 -- Name: ship_id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -801,7 +757,7 @@ ALTER TABLE ONLY ship_in_fleets ALTER COLUMN ship_id SET DEFAULT nextval('ship_i
 
 
 --
--- TOC entry 2122 (class 2604 OID 18826)
+-- TOC entry 2114 (class 2604 OID 19207)
 -- Name: fleet_id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -809,7 +765,7 @@ ALTER TABLE ONLY ship_in_fleets ALTER COLUMN fleet_id SET DEFAULT nextval('ship_
 
 
 --
--- TOC entry 2126 (class 2604 OID 18868)
+-- TOC entry 2118 (class 2604 OID 19244)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -817,7 +773,7 @@ ALTER TABLE ONLY ship_updates ALTER COLUMN id SET DEFAULT nextval('ship_updates_
 
 
 --
--- TOC entry 2120 (class 2604 OID 18815)
+-- TOC entry 2112 (class 2604 OID 19196)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -825,16 +781,16 @@ ALTER TABLE ONLY ships ALTER COLUMN id SET DEFAULT nextval('ships_id_seq'::regcl
 
 
 --
--- TOC entry 2334 (class 0 OID 18835)
--- Dependencies: 201
+-- TOC entry 2297 (class 0 OID 19216)
+-- Dependencies: 199
 -- Data for Name: citycenter_updates; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2369 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 2331 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: citycenter_updates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -842,7 +798,7 @@ SELECT pg_catalog.setval('citycenter_updates_id_seq', 1, false);
 
 
 --
--- TOC entry 2317 (class 0 OID 18736)
+-- TOC entry 2282 (class 0 OID 19130)
 -- Dependencies: 184
 -- Data for Name: citycenters; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -850,7 +806,7 @@ SELECT pg_catalog.setval('citycenter_updates_id_seq', 1, false);
 
 
 --
--- TOC entry 2370 (class 0 OID 0)
+-- TOC entry 2332 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: citycenters_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -859,7 +815,24 @@ SELECT pg_catalog.setval('citycenters_id_seq', 1, false);
 
 
 --
--- TOC entry 2323 (class 0 OID 18775)
+-- TOC entry 2307 (class 0 OID 19262)
+-- Dependencies: 209
+-- Data for Name: cosmodrome_updates; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+
+
+--
+-- TOC entry 2333 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: cosmodrome_updates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('cosmodrome_updates_id_seq', 1, false);
+
+
+--
+-- TOC entry 2288 (class 0 OID 19169)
 -- Dependencies: 190
 -- Data for Name: cosmodromes; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -867,7 +840,7 @@ SELECT pg_catalog.setval('citycenters_id_seq', 1, false);
 
 
 --
--- TOC entry 2371 (class 0 OID 0)
+-- TOC entry 2334 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: cosmodromes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -876,7 +849,7 @@ SELECT pg_catalog.setval('cosmodromes_id_seq', 1, false);
 
 
 --
--- TOC entry 2321 (class 0 OID 18762)
+-- TOC entry 2286 (class 0 OID 19156)
 -- Dependencies: 188
 -- Data for Name: crystal_mines; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -884,7 +857,7 @@ SELECT pg_catalog.setval('cosmodromes_id_seq', 1, false);
 
 
 --
--- TOC entry 2372 (class 0 OID 0)
+-- TOC entry 2335 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: crystal_mines_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -893,16 +866,16 @@ SELECT pg_catalog.setval('crystal_mines_id_seq', 1, false);
 
 
 --
--- TOC entry 2338 (class 0 OID 18855)
--- Dependencies: 205
+-- TOC entry 2301 (class 0 OID 19233)
+-- Dependencies: 203
 -- Data for Name: crystalmine_updates; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2373 (class 0 OID 0)
--- Dependencies: 204
+-- TOC entry 2336 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: crystalmine_updates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -910,50 +883,16 @@ SELECT pg_catalog.setval('crystalmine_updates_id_seq', 1, false);
 
 
 --
--- TOC entry 2342 (class 0 OID 18875)
--- Dependencies: 209
--- Data for Name: dok_updates; Type: TABLE DATA; Schema: public; Owner: root
---
-
-
-
---
--- TOC entry 2374 (class 0 OID 0)
--- Dependencies: 208
--- Name: dok_updates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
---
-
-SELECT pg_catalog.setval('dok_updates_id_seq', 1, false);
-
-
---
--- TOC entry 2325 (class 0 OID 18788)
+-- TOC entry 2290 (class 0 OID 19182)
 -- Dependencies: 192
--- Data for Name: doks; Type: TABLE DATA; Schema: public; Owner: root
---
-
-
-
---
--- TOC entry 2375 (class 0 OID 0)
--- Dependencies: 191
--- Name: doks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
---
-
-SELECT pg_catalog.setval('doks_id_seq', 1, false);
-
-
---
--- TOC entry 2327 (class 0 OID 18801)
--- Dependencies: 194
 -- Data for Name: fleets; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2376 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2337 (class 0 OID 0)
+-- Dependencies: 191
 -- Name: fleets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -961,7 +900,7 @@ SELECT pg_catalog.setval('fleets_id_seq', 1, false);
 
 
 --
--- TOC entry 2319 (class 0 OID 18749)
+-- TOC entry 2284 (class 0 OID 19143)
 -- Dependencies: 186
 -- Data for Name: iron_mines; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -969,7 +908,7 @@ SELECT pg_catalog.setval('fleets_id_seq', 1, false);
 
 
 --
--- TOC entry 2377 (class 0 OID 0)
+-- TOC entry 2338 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: iron_mines_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -978,16 +917,16 @@ SELECT pg_catalog.setval('iron_mines_id_seq', 1, false);
 
 
 --
--- TOC entry 2336 (class 0 OID 18845)
--- Dependencies: 203
+-- TOC entry 2299 (class 0 OID 19225)
+-- Dependencies: 201
 -- Data for Name: ironmine_updates; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2378 (class 0 OID 0)
--- Dependencies: 202
+-- TOC entry 2339 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: ironmine_updates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -995,7 +934,7 @@ SELECT pg_catalog.setval('ironmine_updates_id_seq', 1, false);
 
 
 --
--- TOC entry 2315 (class 0 OID 18723)
+-- TOC entry 2280 (class 0 OID 19117)
 -- Dependencies: 182
 -- Data for Name: planets; Type: TABLE DATA; Schema: public; Owner: root
 --
@@ -1003,7 +942,7 @@ SELECT pg_catalog.setval('ironmine_updates_id_seq', 1, false);
 
 
 --
--- TOC entry 2379 (class 0 OID 0)
+-- TOC entry 2340 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: planets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
@@ -1012,16 +951,16 @@ SELECT pg_catalog.setval('planets_id_seq', 1, false);
 
 
 --
--- TOC entry 2344 (class 0 OID 18885)
--- Dependencies: 211
+-- TOC entry 2305 (class 0 OID 19249)
+-- Dependencies: 207
 -- Data for Name: resources; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2380 (class 0 OID 0)
--- Dependencies: 210
+-- TOC entry 2341 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: resources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -1029,16 +968,16 @@ SELECT pg_catalog.setval('resources_id_seq', 1, false);
 
 
 --
--- TOC entry 2332 (class 0 OID 18822)
--- Dependencies: 199
+-- TOC entry 2295 (class 0 OID 19203)
+-- Dependencies: 197
 -- Data for Name: ship_in_fleets; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2381 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 2342 (class 0 OID 0)
+-- Dependencies: 196
 -- Name: ship_in_fleets_fleet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -1046,8 +985,8 @@ SELECT pg_catalog.setval('ship_in_fleets_fleet_id_seq', 1, false);
 
 
 --
--- TOC entry 2382 (class 0 OID 0)
--- Dependencies: 197
+-- TOC entry 2343 (class 0 OID 0)
+-- Dependencies: 195
 -- Name: ship_in_fleets_ship_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -1055,16 +994,16 @@ SELECT pg_catalog.setval('ship_in_fleets_ship_id_seq', 1, false);
 
 
 --
--- TOC entry 2340 (class 0 OID 18865)
--- Dependencies: 207
+-- TOC entry 2303 (class 0 OID 19241)
+-- Dependencies: 205
 -- Data for Name: ship_updates; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2383 (class 0 OID 0)
--- Dependencies: 206
+-- TOC entry 2344 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: ship_updates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -1072,16 +1011,16 @@ SELECT pg_catalog.setval('ship_updates_id_seq', 1, false);
 
 
 --
--- TOC entry 2329 (class 0 OID 18812)
--- Dependencies: 196
+-- TOC entry 2292 (class 0 OID 19193)
+-- Dependencies: 194
 -- Data for Name: ships; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 
 
 --
--- TOC entry 2384 (class 0 OID 0)
--- Dependencies: 195
+-- TOC entry 2345 (class 0 OID 0)
+-- Dependencies: 193
 -- Name: ships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -1089,16 +1028,7 @@ SELECT pg_catalog.setval('ships_id_seq', 1, false);
 
 
 --
--- TOC entry 2164 (class 2606 OID 18842)
--- Name: citycenter_updates_citycenter_id_key; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY citycenter_updates
-    ADD CONSTRAINT citycenter_updates_citycenter_id_key UNIQUE (citycenter_id);
-
-
---
--- TOC entry 2166 (class 2606 OID 18840)
+-- TOC entry 2152 (class 2606 OID 19221)
 -- Name: citycenter_updates_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1107,7 +1037,7 @@ ALTER TABLE ONLY citycenter_updates
 
 
 --
--- TOC entry 2134 (class 2606 OID 18744)
+-- TOC entry 2126 (class 2606 OID 19138)
 -- Name: citycenters_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1116,7 +1046,7 @@ ALTER TABLE ONLY citycenters
 
 
 --
--- TOC entry 2136 (class 2606 OID 18746)
+-- TOC entry 2128 (class 2606 OID 19140)
 -- Name: citycenters_planet_name_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1125,7 +1055,16 @@ ALTER TABLE ONLY citycenters
 
 
 --
--- TOC entry 2146 (class 2606 OID 18783)
+-- TOC entry 2164 (class 2606 OID 19267)
+-- Name: cosmodrome_updates_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY cosmodrome_updates
+    ADD CONSTRAINT cosmodrome_updates_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2138 (class 2606 OID 19177)
 -- Name: cosmodromes_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1134,7 +1073,7 @@ ALTER TABLE ONLY cosmodromes
 
 
 --
--- TOC entry 2148 (class 2606 OID 18785)
+-- TOC entry 2140 (class 2606 OID 19179)
 -- Name: cosmodromes_planet_name_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1143,7 +1082,7 @@ ALTER TABLE ONLY cosmodromes
 
 
 --
--- TOC entry 2142 (class 2606 OID 18770)
+-- TOC entry 2134 (class 2606 OID 19164)
 -- Name: crystal_mines_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1152,7 +1091,7 @@ ALTER TABLE ONLY crystal_mines
 
 
 --
--- TOC entry 2144 (class 2606 OID 18772)
+-- TOC entry 2136 (class 2606 OID 19166)
 -- Name: crystal_mines_planet_name_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1161,16 +1100,7 @@ ALTER TABLE ONLY crystal_mines
 
 
 --
--- TOC entry 2172 (class 2606 OID 18862)
--- Name: crystalmine_updates_crystalmine_id_key; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY crystalmine_updates
-    ADD CONSTRAINT crystalmine_updates_crystalmine_id_key UNIQUE (crystalmine_id);
-
-
---
--- TOC entry 2174 (class 2606 OID 18860)
+-- TOC entry 2156 (class 2606 OID 19238)
 -- Name: crystalmine_updates_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1179,43 +1109,7 @@ ALTER TABLE ONLY crystalmine_updates
 
 
 --
--- TOC entry 2180 (class 2606 OID 18882)
--- Name: dok_updates_dok_id_key; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY dok_updates
-    ADD CONSTRAINT dok_updates_dok_id_key UNIQUE (dok_id);
-
-
---
--- TOC entry 2182 (class 2606 OID 18880)
--- Name: dok_updates_pkey; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY dok_updates
-    ADD CONSTRAINT dok_updates_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 2150 (class 2606 OID 18796)
--- Name: doks_pkey; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY doks
-    ADD CONSTRAINT doks_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 2152 (class 2606 OID 18798)
--- Name: doks_planet_name_key; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY doks
-    ADD CONSTRAINT doks_planet_name_key UNIQUE (planet_name);
-
-
---
--- TOC entry 2154 (class 2606 OID 18809)
+-- TOC entry 2142 (class 2606 OID 19190)
 -- Name: fleets_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1224,7 +1118,7 @@ ALTER TABLE ONLY fleets
 
 
 --
--- TOC entry 2138 (class 2606 OID 18757)
+-- TOC entry 2130 (class 2606 OID 19151)
 -- Name: iron_mines_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1233,7 +1127,7 @@ ALTER TABLE ONLY iron_mines
 
 
 --
--- TOC entry 2140 (class 2606 OID 18759)
+-- TOC entry 2132 (class 2606 OID 19153)
 -- Name: iron_mines_planet_name_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1242,16 +1136,7 @@ ALTER TABLE ONLY iron_mines
 
 
 --
--- TOC entry 2168 (class 2606 OID 18852)
--- Name: ironmine_updates_ironmine_id_key; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY ironmine_updates
-    ADD CONSTRAINT ironmine_updates_ironmine_id_key UNIQUE (ironmine_id);
-
-
---
--- TOC entry 2170 (class 2606 OID 18850)
+-- TOC entry 2154 (class 2606 OID 19230)
 -- Name: ironmine_updates_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1260,7 +1145,7 @@ ALTER TABLE ONLY ironmine_updates
 
 
 --
--- TOC entry 2130 (class 2606 OID 18731)
+-- TOC entry 2122 (class 2606 OID 19125)
 -- Name: planets_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1269,7 +1154,7 @@ ALTER TABLE ONLY planets
 
 
 --
--- TOC entry 2132 (class 2606 OID 18733)
+-- TOC entry 2124 (class 2606 OID 19127)
 -- Name: planets_planet_name_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1278,7 +1163,7 @@ ALTER TABLE ONLY planets
 
 
 --
--- TOC entry 2184 (class 2606 OID 18893)
+-- TOC entry 2160 (class 2606 OID 19257)
 -- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1287,7 +1172,7 @@ ALTER TABLE ONLY resources
 
 
 --
--- TOC entry 2186 (class 2606 OID 18895)
+-- TOC entry 2162 (class 2606 OID 19259)
 -- Name: resources_planet_name_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1296,7 +1181,7 @@ ALTER TABLE ONLY resources
 
 
 --
--- TOC entry 2158 (class 2606 OID 18832)
+-- TOC entry 2146 (class 2606 OID 19213)
 -- Name: ship_in_fleets_fleet_id_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1305,7 +1190,7 @@ ALTER TABLE ONLY ship_in_fleets
 
 
 --
--- TOC entry 2160 (class 2606 OID 18828)
+-- TOC entry 2148 (class 2606 OID 19209)
 -- Name: ship_in_fleets_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1314,7 +1199,7 @@ ALTER TABLE ONLY ship_in_fleets
 
 
 --
--- TOC entry 2162 (class 2606 OID 18830)
+-- TOC entry 2150 (class 2606 OID 19211)
 -- Name: ship_in_fleets_ship_id_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1323,7 +1208,7 @@ ALTER TABLE ONLY ship_in_fleets
 
 
 --
--- TOC entry 2176 (class 2606 OID 18870)
+-- TOC entry 2158 (class 2606 OID 19246)
 -- Name: ship_updates_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1332,16 +1217,7 @@ ALTER TABLE ONLY ship_updates
 
 
 --
--- TOC entry 2178 (class 2606 OID 18872)
--- Name: ship_updates_ship_id_key; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY ship_updates
-    ADD CONSTRAINT ship_updates_ship_id_key UNIQUE (ship_id);
-
-
---
--- TOC entry 2156 (class 2606 OID 18817)
+-- TOC entry 2144 (class 2606 OID 19198)
 -- Name: ships_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -1350,124 +1226,7 @@ ALTER TABLE ONLY ships
 
 
 --
--- TOC entry 2194 (class 2606 OID 18896)
--- Name: citycenter_updates_citycenter_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY citycenter_updates
-    ADD CONSTRAINT citycenter_updates_citycenter_id_fkey FOREIGN KEY (citycenter_id) REFERENCES citycenters(id);
-
-
---
--- TOC entry 2187 (class 2606 OID 18907)
--- Name: citycenters_planet_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY citycenters
-    ADD CONSTRAINT citycenters_planet_name_fkey FOREIGN KEY (planet_name) REFERENCES planets(planet_name);
-
-
---
--- TOC entry 2190 (class 2606 OID 18932)
--- Name: cosmodromes_planet_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY cosmodromes
-    ADD CONSTRAINT cosmodromes_planet_name_fkey FOREIGN KEY (planet_name) REFERENCES planets(planet_name);
-
-
---
--- TOC entry 2189 (class 2606 OID 18937)
--- Name: crystal_mines_planet_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY crystal_mines
-    ADD CONSTRAINT crystal_mines_planet_name_fkey FOREIGN KEY (planet_name) REFERENCES planets(planet_name);
-
-
---
--- TOC entry 2196 (class 2606 OID 18942)
--- Name: crystalmine_updates_crystalmine_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY crystalmine_updates
-    ADD CONSTRAINT crystalmine_updates_crystalmine_id_fkey FOREIGN KEY (crystalmine_id) REFERENCES crystal_mines(id);
-
-
---
--- TOC entry 2198 (class 2606 OID 18927)
--- Name: dok_updates_dok_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY dok_updates
-    ADD CONSTRAINT dok_updates_dok_id_fkey FOREIGN KEY (dok_id) REFERENCES doks(id);
-
-
---
--- TOC entry 2191 (class 2606 OID 18912)
--- Name: doks_planet_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY doks
-    ADD CONSTRAINT doks_planet_name_fkey FOREIGN KEY (planet_name) REFERENCES planets(planet_name);
-
-
---
--- TOC entry 2188 (class 2606 OID 18917)
--- Name: iron_mines_planet_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY iron_mines
-    ADD CONSTRAINT iron_mines_planet_name_fkey FOREIGN KEY (planet_name) REFERENCES planets(planet_name);
-
-
---
--- TOC entry 2195 (class 2606 OID 18922)
--- Name: ironmine_updates_ironmine_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY ironmine_updates
-    ADD CONSTRAINT ironmine_updates_ironmine_id_fkey FOREIGN KEY (ironmine_id) REFERENCES iron_mines(id);
-
-
---
--- TOC entry 2199 (class 2606 OID 18902)
--- Name: resources_planet_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY resources
-    ADD CONSTRAINT resources_planet_name_fkey FOREIGN KEY (planet_name) REFERENCES planets(planet_name);
-
-
---
--- TOC entry 2193 (class 2606 OID 18957)
--- Name: ship_in_fleets_fleet_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY ship_in_fleets
-    ADD CONSTRAINT ship_in_fleets_fleet_id_fkey FOREIGN KEY (fleet_id) REFERENCES fleets(id);
-
-
---
--- TOC entry 2192 (class 2606 OID 18952)
--- Name: ship_in_fleets_ship_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY ship_in_fleets
-    ADD CONSTRAINT ship_in_fleets_ship_id_fkey FOREIGN KEY (ship_id) REFERENCES ships(id);
-
-
---
--- TOC entry 2197 (class 2606 OID 18947)
--- Name: ship_updates_ship_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY ship_updates
-    ADD CONSTRAINT ship_updates_ship_id_fkey FOREIGN KEY (ship_id) REFERENCES ships(id);
-
-
---
--- TOC entry 2351 (class 0 OID 0)
+-- TOC entry 2314 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -1478,7 +1237,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-09-06 09:16:30 EEST
+-- Completed on 2017-09-08 16:18:36 EEST
 
 --
 -- PostgreSQL database dump complete

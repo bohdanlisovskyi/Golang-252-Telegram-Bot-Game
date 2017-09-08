@@ -16,7 +16,7 @@ var (
 	once sync.Once
 )
 
-func GetRedisConn() (conn *redis.Client, err error) {
+func GetRedisConnection() (conn *redis.Client, err error) {
 	once.Do(func() {
 		p, err := pool.New(NETWORK, ADDRESS, POOL_SIZE)
 		if err != nil {
