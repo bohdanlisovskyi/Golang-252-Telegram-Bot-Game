@@ -1,10 +1,17 @@
 package: github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game
 import:
-- package: github.com/technoweenie/multipartstreamer
-  version: ~1.0.1
-- package: gopkg.in/telegram-bot-api.v4
-  version: ~4.6.0
+- package: github.com/Sirupsen/logrus
+  version: ^1.0.3
+- package: github.com/jinzhu/gorm
+  version: ^1.0.0
+  subpackages:
+  - dialects/postgres
+- package: github.com/go-telegram-bot-api/telegram-bot-api
+  version: ^4.6.0
+- package: github.com/mediocregopher/radix.v2
+  subpackages:
+  - '...'
 - package: github.com/yanzay/tbot
   version: ~0.3.1
-- package: github.com/go-telegram-bot-api/telegram-bot-api
-  version: ~4.6.0
+- package: github.com/technoweenie/multipartstreamer
+  version: ~1.0.1
