@@ -15,3 +15,4 @@
 .idea/
 glide.lock
 vendor
+*.xml
