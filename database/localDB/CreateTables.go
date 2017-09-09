@@ -87,6 +87,7 @@ type Fleet struct {
 	SecondlvlshipAmount int
 	ThirdlvlshipAmount  int
 	IsAlive             bool
+	InCosmodrome        bool
 }
 
 type ShipInFleet struct {
