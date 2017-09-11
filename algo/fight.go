@@ -1,48 +1,19 @@
 package algo
 
 import (
-	"math/rand"
-	"time"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database/postgres"
 )
 
 const randomRange = 0.25
 
-type Ship struct {
-	Id           int `gorm:"primary_key;AUTO_INCREMENT"`
-	CosmodromeId int
-	Level        int
-	HitRate      int
-	Health       int
-	LoadCapacity int
-}
-
 //Fight - return fleets after battle and power of fleets (0 means fleet is dead, maybe they both dead)
-func Fight(fleet1, fleet2 []Ship) ([]Ship, []Ship, int, int) {
-	rGen := rand.New(rand.NewSource(time.Now().UnixNano()))
+func Fight(fleet1, fleet2 []postgres.Ship) ([]postgres.Ship, []postgres.Ship, int, int) {
+
 	for {
-		currentPowerOfFirstFleet := 0
-		currentPowerOfSecondFleet := 0
 		//compute summary hit of first and second fleets
-		for _, ship := range fleet1 {
-			if ship.Health == 0 {
-				continue
-			}
-			if rGen.Float64() <= 0.5 {
-				currentPowerOfFirstFleet += int(float64(ship.HitRate) * (1.0 + rGen.Float64()*randomRange))
-			} else {
-				currentPowerOfFirstFleet += int(float64(ship.HitRate) * (1.0 - rGen.Float64()*randomRange))
-			}
-		}
-		for _, ship := range fleet2 {
-			if ship.Health == 0 {
-				continue
-			}
-			if rGen.Float64() <= 0.5 {
-				currentPowerOfSecondFleet += int(float64(ship.HitRate) * (1.0 + rGen.Float64()*randomRange))
-			} else {
-				currentPowerOfSecondFleet += int(float64(ship.HitRate) * (1.0 - rGen.Float64()*randomRange))
-			}
-		}
+		currentPowerOfFirstFleet := ComputeHit(fleet1)
+		currentPowerOfSecondFleet := ComputeHit(fleet2)
+
 		if currentPowerOfFirstFleet == 0 || currentPowerOfSecondFleet == 0 {
 			return fleet1, fleet2, currentPowerOfFirstFleet, currentPowerOfSecondFleet
 		}
@@ -65,5 +36,4 @@ func Fight(fleet1, fleet2 []Ship) ([]Ship, []Ship, int, int) {
 			fleet1[index].Health = 0
 		}
 	}
-	return fleet1, fleet2, 0, 0
 }

@@ -2,17 +2,11 @@ package algo
 
 import (
 	"math"
+
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database/postgres"
 )
 
-type Planet struct {
-	Id          int    `gorm:"primary_key;AUTO_INCREMENT"`
-	PlanetName  string `gorm:"not null;unique"`
-	XCoordinate int
-	YCoordinate int
-	IsActive    bool
-	IsLoaded    bool
-}
-
+//PlaceNewPlanet - return coordinates of new planet
 func PlaceNewPlanet(amountOfPlanets int) (int, int) {
 	if amountOfPlanets == 0 {
 		return 0, 0
@@ -26,8 +20,9 @@ func PlaceNewPlanet(amountOfPlanets int) (int, int) {
 	return int(xCoordinate), int(yCoordinate)
 }
 
-func FindNeighbors(mainPlanet *Planet, listOfPlanets []Planet, amount int) []Planet {
-	var listOfNeighbors = []Planet{}
+//FindNeighbors - return first "amount" neighbors of planet
+func FindNeighbors(mainPlanet *postgres.Planet, listOfPlanets []postgres.Planet, amount int) []postgres.Planet {
+	var listOfNeighbors = []postgres.Planet{}
 	minRadius := 1
 	maxRadius := 4
 	increase := maxRadius - minRadius
