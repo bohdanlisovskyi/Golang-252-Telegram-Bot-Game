@@ -12,7 +12,11 @@ var routes = Routes{
 		HandlerFunc: handlers.StartGame,
 	},
 	Route{
-		Path:        "Menu",
-		HandlerFunc: handlers.ShowMenu,
+		Path:        "/name {planet_name}",
+		HandlerFunc: handlers.PlanetName,
+	},
+	Route{
+		Path:        "Tutorial",
+		HandlerFunc: handlers.GameTutorial,
 	},
 }
