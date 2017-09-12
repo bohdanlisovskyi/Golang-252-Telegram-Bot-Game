@@ -3,6 +3,9 @@ package handlers
 import (
 	"time"
 
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/bot_enteties/buttons"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/bot_enteties/emojies"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/bot_enteties/text_message"
 	"github.com/yanzay/tbot"
 )
 
@@ -13,89 +16,37 @@ func EchoHandler(message *tbot.Message) {
 func StartGame(message *tbot.Message) {
 	message.Replyf("Hello, %s!", message.From)
 	time.Sleep(1 * time.Second)
-	message.Reply("Let's start game")
+	message.Reply(text_message.MessageAboutGame)
+	time.Sleep(500 * time.Millisecond)
+	message.Reply(text_message.EnterPlanetName, tbot.WithMarkdown)
 	time.Sleep(500 * time.Millisecond)
 
-	buttons := [][]string{
-		{"Buildings"},
-	}
-	message.ReplyKeyboard("Here is  your planet, build the future!", buttons)
 }
 
-func ShowMenu(message *tbot.Message) {
+func PlanetName(message *tbot.Message) {
 
-	buttons := [][]string{
-		{"Research Centre", "Mines", "City Centre", "Cosmodrome", "Rating", "Planet history"},
+	//TODO check planet
+
+	planet_name := message.Vars["planet_name"]
+
+	if planet_name == "" {
+		return
 	}
-	message.ReplyKeyboard("Buildings", buttons)
+
+	message.Replyf(text_message.PlanetCreated, planet_name)
+
+	//TODO create all resource and buildings
+
+	message.Reply(text_message.NextStep, tbot.WithMarkdown)
+
+	message.ReplyKeyboard(emojies.DownwardsArrow+emojies.DownwardsArrow+emojies.DownwardsArrow+emojies.DownwardsArrow, buttons.Tutorial_Skip)
 }
 
-func ShowResearchMenu(message *tbot.Message) {
+func GameTutorial(message *tbot.Message) {
 
-	buttons := [][]string{
-		{"Tutorial", "Help", "Planet search", "Buildings"},
-	}
-	message.ReplyKeyboard("Research Centre", buttons)
-}
+	message.Reply(text_message.TutorialText)
 
-func ShowMinesMenu(message *tbot.Message) {
+	time.Sleep(3 * time.Second)
 
-	buttons := [][]string{
-		{"Metal mine", "Crystal mine", "Buildings"},
-	}
-	message.ReplyKeyboard("Mines", buttons)
-}
-func ShowMetalMinesMenu(message *tbot.Message) {
-
-	buttons := [][]string{
-		{"Upgrade", "Employ people", "Buildings", "Status"},
-	}
-	message.ReplyKeyboard("Metal mine", buttons)
-}
-func ShowCrystalMinesMenu(message *tbot.Message) {
-
-	buttons := [][]string{
-		{"Upgrade", "Employ people", "Buildings", "Status"},
-	}
-	message.ReplyKeyboard("Crystal mine", buttons)
-}
-
-func ShowCityCentreMenu(message *tbot.Message) {
-
-	buttons := [][]string{
-		{"Upgrade", "Status", "Buildings"},
-	}
-	message.ReplyKeyboard("City Centre", buttons)
-}
-
-func ShowCosmodromeMenu(message *tbot.Message) {
-
-	buttons := [][]string{
-		{"Fleet", "Dockyard", "Buildings"},
-	}
-	message.ReplyKeyboard("Cosmodrome", buttons)
-}
-
-func ShowFleetMenu(message *tbot.Message) {
-
-	buttons := [][]string{
-		{"Set new fleet", "Edit existing group", "Status", "Buildings"},
-	}
-	message.ReplyKeyboard("Fleet", buttons)
-}
-
-func ShowDockyardMenu(message *tbot.Message) {
-
-	buttons := [][]string{
-		{"Build new ships", "Status", "Buildings"},
-	}
-	message.ReplyKeyboard("Dockyard", buttons)
-}
-
-func ShowRatingMenu(message *tbot.Message) {
-
-	buttons := [][]string{
-		{"Resourses used", "Population", "Buildings"},
-	}
-	message.ReplyKeyboard("Rating", buttons)
+	message.ReplyKeyboard("Buildings", buttons.AllBuildings, tbot.ResizeKeyboard)
 }
