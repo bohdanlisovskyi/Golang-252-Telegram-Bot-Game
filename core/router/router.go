@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/handlers"
-	"github.com/yanzay/tbot"
+	"github.com/bohdanlisovskyi/telegrambot/tbot"
 )
 
 type Route struct {
