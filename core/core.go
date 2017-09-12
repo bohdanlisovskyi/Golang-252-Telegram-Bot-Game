@@ -5,7 +5,7 @@ import (
 
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/router"
-	"github.com/yanzay/tbot"
+	"github.com/bohdanlisovskyi/telegrambot/tbot"
 )
 
 func Run() {

@@ -5,3 +5,4 @@ const EnterPlanetName = "*Please Enter Planet Name With command* ```\n\n``` `/na
 const PlanetCreated = "Planet %s!, was created. \n*Congratulation!!!*"
 const NextStep = "*Please choose what you want to do next?\n*"
 const TutorialText = "Tutorial text"
+const SkipToturial = "You can start tutorial in DataCenter"
