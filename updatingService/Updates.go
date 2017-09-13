@@ -3,6 +3,7 @@ package updatingService
 import "github.com/bohdanlisovskyi/telegrambot/tbot"
 
 func UpdateCitycenter(message *tbot.Message)  {
+
 }
 
 func UpdateIronmine(message *tbot.Message)  {
