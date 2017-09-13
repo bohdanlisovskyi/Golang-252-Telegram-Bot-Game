@@ -13,11 +13,11 @@ const POOL_SIZE = 10
 
 
 var (
-	once sync.Once
+	onceRed sync.Once
 )
 
 func GetRedisConnection() (conn *redis.Client, err error) {
-	once.Do(func() {
+	onceRed.Do(func() {
 		p, err := pool.New(NETWORK, ADDRESS, POOL_SIZE)
 		if err != nil {
 			loger.Log.Error(err)
