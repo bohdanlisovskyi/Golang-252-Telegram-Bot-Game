@@ -9,7 +9,7 @@ import (
 )
 
 //FleetIsAlive - return true if exists at least one ship with Health > 0, false otherwise
-func FleetIsAlive(fleet []postgres.Ship) bool {
+func ComputeIsFleetAlive(fleet []postgres.Ship) bool {
 	for index := range fleet {
 		if fleet[index].Health > 0 {
 			return true
@@ -47,11 +47,11 @@ func ComputeHit(fleet []postgres.Ship) int {
 }
 
 //ComputeFlightTime - return time needed to rich destination between planets
-func ComputeFlightTime(fleet []postgres.Ship, startPlanet, endPlanet *postgres.Planet) (time.Duration, *error) {
+func ComputeFlightTime(fleet []postgres.Ship, startPlanet, endPlanet *postgres.Planet) (time.Duration, error) {
 	speed, ok := FindMinimalLevel(fleet)
 	if !ok {
 		err := errors.New("Cannot find fleet's speed")
-		return 0, &err
+		return 0, err
 	}
 	distance := EuclDist(startPlanet.XCoordinate, startPlanet.YCoordinate, endPlanet.XCoordinate, endPlanet.YCoordinate)
 	return time.Duration(distance / float64(speed)), nil
@@ -69,4 +69,18 @@ func FindMinimalLevel(fleet []postgres.Ship) (int, bool) {
 		}
 	}
 	return minLvl, true
+}
+
+//FleetGarbageCollector - return alive fleet and dead fleet
+func FleetGarbageCollector(fleet []postgres.Ship) ([]postgres.Ship, []postgres.Ship) {
+	updatedFleet := make([]postgres.Ship, 0)
+	garbageFleet := make([]postgres.Ship, 0)
+	for index := range fleet {
+		if fleet[index].Health <= 0 {
+			garbageFleet = append(garbageFleet, fleet[index])
+			continue
+		}
+		updatedFleet = append(updatedFleet, fleet[index])
+	}
+	return updatedFleet, garbageFleet
 }
