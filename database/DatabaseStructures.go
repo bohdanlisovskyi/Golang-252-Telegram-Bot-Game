@@ -1,4 +1,4 @@
-package postgres
+package database
 
 type Planet struct {
 	Id          int    `gorm:"primary_key;AUTO_INCREMENT"`
