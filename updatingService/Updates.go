@@ -1,21 +1,22 @@
 package updatingService
 
-func UpdateCitycenter()  {
+import "github.com/bohdanlisovskyi/telegrambot/tbot"
+
+func UpdateCitycenter(message *tbot.Message)  {
+}
+
+func UpdateIronmine(message *tbot.Message)  {
 	
 }
 
-func UpdateIronmine()  {
+func UpdateCrystalmine(message *tbot.Message)  {
 	
 }
 
-func UpdateCrystalmine()  {
+func UpdateCosmodrome(message *tbot.Message)  {
 	
 }
 
-func UpdateCosmodrome()  {
-	
-}
-
-func UpdateShip()  {
+func UpdateShip(message *tbot.Message)  {
 	
 }
