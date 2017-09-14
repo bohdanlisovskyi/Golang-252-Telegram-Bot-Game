@@ -1,13 +1,13 @@
 package algo
 
 import (
-	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database/postgres"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database"
 )
 
 const randomRange = 0.25
 
 //Fight - return fleets after battle and power of fleets (0 means fleet is dead, maybe they both dead)
-func Fight(fleet1, fleet2 []postgres.Ship) ([]postgres.Ship, []postgres.Ship, int, int) {
+func Fight(fleet1, fleet2 []database.Ship) ([]database.Ship, []database.Ship, int, int) {
 
 	for {
 		//compute summary hit of first and second fleets

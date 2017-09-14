@@ -5,11 +5,11 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database/postgres"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database"
 )
 
-//FleetIsAlive - return true if exists at least one ship with Health > 0, false otherwise
-func ComputeIsFleetAlive(fleet []postgres.Ship) bool {
+//ComputeIsFleetAlive - return true if exists at least one ship with Health > 0, false otherwise
+func ComputeIsFleetAlive(fleet []database.Ship) bool {
 	for index := range fleet {
 		if fleet[index].Health > 0 {
 			return true
@@ -19,7 +19,7 @@ func ComputeIsFleetAlive(fleet []postgres.Ship) bool {
 }
 
 //ComputeLoadCapacity - return summary load capacity of fleet
-func ComputeLoadCapacity(fleet []postgres.Ship) int {
+func ComputeLoadCapacity(fleet []database.Ship) int {
 	summaryCapacity := 0
 	for _, ship := range fleet {
 		if ship.Health > 0 {
@@ -30,7 +30,7 @@ func ComputeLoadCapacity(fleet []postgres.Ship) int {
 }
 
 //ComputeHit - return summary hit of fleet
-func ComputeHit(fleet []postgres.Ship) int {
+func ComputeHit(fleet []database.Ship) int {
 	rGen := rand.New(rand.NewSource(time.Now().UnixNano()))
 	summaryHit := 0
 	for _, ship := range fleet {
@@ -47,7 +47,7 @@ func ComputeHit(fleet []postgres.Ship) int {
 }
 
 //ComputeFlightTime - return time needed to rich destination between planets
-func ComputeFlightTime(fleet []postgres.Ship, startPlanet, endPlanet *postgres.Planet) (time.Duration, error) {
+func ComputeFlightTime(fleet []database.Ship, startPlanet, endPlanet *database.Planet) (time.Duration, error) {
 	speed, ok := FindMinimalLevel(fleet)
 	if !ok {
 		err := errors.New("Cannot find fleet's speed")
@@ -58,7 +58,7 @@ func ComputeFlightTime(fleet []postgres.Ship, startPlanet, endPlanet *postgres.P
 }
 
 //FindMinimalLevel - return minimal level of ship in fleet and true, or 0, false if fleet empty
-func FindMinimalLevel(fleet []postgres.Ship) (int, bool) {
+func FindMinimalLevel(fleet []database.Ship) (int, bool) {
 	if len(fleet) == 0 {
 		return 0, false
 	}
@@ -72,9 +72,9 @@ func FindMinimalLevel(fleet []postgres.Ship) (int, bool) {
 }
 
 //FleetGarbageCollector - return alive fleet and dead fleet
-func FleetGarbageCollector(fleet []postgres.Ship) ([]postgres.Ship, []postgres.Ship) {
-	updatedFleet := make([]postgres.Ship, 0)
-	garbageFleet := make([]postgres.Ship, 0)
+func FleetGarbageCollector(fleet []database.Ship) ([]database.Ship, []database.Ship) {
+	updatedFleet := make([]database.Ship, 0)
+	garbageFleet := make([]database.Ship, 0)
 	for index := range fleet {
 		if fleet[index].Health <= 0 {
 			garbageFleet = append(garbageFleet, fleet[index])
