@@ -6,6 +6,7 @@ import (
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/bot_enteties/buttons"
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/bot_enteties/emojies"
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/bot_enteties/text_message"
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/auth"
 	"github.com/bohdanlisovskyi/telegrambot/tbot"
 )
 
@@ -31,7 +32,7 @@ func PlanetName(message *tbot.Message) {
 	if planet_name == "" {
 		planet_name = "Planet"
 	}
-
+	auth.UserCreation(message)
 	message.Replyf(text_message.PlanetCreated, planet_name)
 
 	//TODO create all resource and buildings
