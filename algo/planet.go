@@ -22,7 +22,7 @@ func PlaceNewPlanet(amountOfPlanets int) (int, int) {
 
 //FindNeighbors - return first "amount" neighbors of planet
 func FindNeighbors(mainPlanet *database.Planet, listOfPlanets []database.Planet, amount int) []database.Planet {
-	var listOfNeighbors = []database.Planet{}
+	listOfNeighbors := make([]database.Planet, 0)
 	minRadius := 1
 	maxRadius := 4
 	increase := maxRadius - minRadius
