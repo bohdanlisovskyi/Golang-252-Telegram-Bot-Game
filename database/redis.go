@@ -1,4 +1,4 @@
-package redis
+package database
 
 import (
 	"github.com/mediocregopher/radix.v2/pool"

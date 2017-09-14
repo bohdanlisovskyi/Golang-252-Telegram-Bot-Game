@@ -1,7 +1,8 @@
-package postgres
+package database
 
 type Planet struct {
 	Id          int    `gorm:"primary_key;AUTO_INCREMENT"`
+	UserName    string `gorm:"not null;unique"`
 	PlanetName  string `gorm:"not null;unique"`
 	XCoordinate int
 	YCoordinate int
