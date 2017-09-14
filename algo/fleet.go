@@ -8,6 +8,8 @@ import (
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database"
 )
 
+const maxShipLvl = 3
+
 //ComputeIsFleetAlive - return true if exists at least one ship with Health > 0, false otherwise
 func ComputeIsFleetAlive(fleet []database.Ship) bool {
 	for index := range fleet {
@@ -59,11 +61,11 @@ func ComputeFlightTime(fleet []database.Ship, startPlanet, endPlanet *database.P
 
 //FindMinimalLevel - return minimal level of ship in fleet and true, or 0, false if fleet empty
 func FindMinimalLevel(fleet []database.Ship) (int, bool) {
-	if len(fleet) == 0 {
+	if !ComputeIsFleetAlive(fleet) {
 		return 0, false
 	}
-	minLvl := fleet[0].Level
-	for index := 1; index < len(fleet) && minLvl > 1; index++ {
+	minLvl := maxShipLvl
+	for index := 0; index < len(fleet) && minLvl > 1; index++ {
 		if fleet[index].Health > 0 && fleet[index].Level < minLvl {
 			minLvl = fleet[index].Level
 		}
