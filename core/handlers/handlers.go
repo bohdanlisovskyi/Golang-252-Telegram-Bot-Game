@@ -26,11 +26,10 @@ func StartGame(message *tbot.Message) {
 func PlanetName(message *tbot.Message) {
 
 	//TODO check planet
-
 	planet_name := message.Vars["planet_name"]
 
 	if planet_name == "" {
-		return
+		planet_name = "Planet"
 	}
 
 	message.Replyf(text_message.PlanetCreated, planet_name)
