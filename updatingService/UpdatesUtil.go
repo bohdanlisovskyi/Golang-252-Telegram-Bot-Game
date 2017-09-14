@@ -2,10 +2,10 @@ package updatingService
 
 import (
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database"
-	"fmt"
+
 )
 
-
+// GetPlanetName retrieve value planet_name from table planets
 func GetPlanetName(userName string) (planetName string, err error)  {
 	planet := &database.Planet{}
 	db, err := database.GetPostgresConnection()
@@ -14,6 +14,11 @@ func GetPlanetName(userName string) (planetName string, err error)  {
 	}
 	db.Where("user_name = ?", userName).Find(planet)
 	planetName = planet.PlanetName
-	fmt.Println(planetName)
+	//fmt.Println(planetName)
 	return planetName, nil
+}
+
+// IsEnoughResources check if user has enough resources for updating
+func IsEnoughResources(planetName string) (ok bool, err error) {
+	
 }

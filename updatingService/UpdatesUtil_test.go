@@ -3,17 +3,17 @@ package updatingService
 import "testing"
 
 func TestGetPlanetName(t *testing.T) {
-
-	myPlanetName := "nljlkmk"
-
+	myPlanetName := "myOne"
 	planetName, err := GetPlanetName("yavval")
-
 	if err != nil{
-		//t.Fail()
+		t.Fail()
+	}
+	if myPlanetName != planetName{
+		t.Logf("Mistake, correct name %s, but retreived %s", myPlanetName, planetName)
+		t.Fail()
 	}
 	if myPlanetName == planetName{
-		t.Logf("Retreiving succesed, %s, %s", myPlanetName, planetName)
+		t.Logf("Retrieving correct: %s = retreived: %s", myPlanetName, planetName)
 	}
-
 }
 
