@@ -1,8 +1,16 @@
 package updatingService
 
-import "testing"
+import (
+	"testing"
+	"github.com/bohdanlisovskyi/telegrambot/tbot"
+)
+
 
 func TestUpdateCitycenter(t *testing.T) {
+	msg := tbot.Message{nil, nil}
+
+	ok, err := UpdateCitycenter(&msg)
+
 
 }
 
