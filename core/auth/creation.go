@@ -15,7 +15,14 @@ func UserCreation(message *tbot.Message) error {
 	plan := &database.Planet{}
 	db.Last(plan)
 	x, y := algo.PlaceNewPlanet(plan.Id)
-	planet := database.Planet{PlanetName: message.Vars["planet_name"], UserName: message.From, XCoordinate: x, YCoordinate: y, IsActive: true, IsLoaded: true}
+	planet := database.Planet{
+		PlanetName:  message.Vars["planet_name"],
+		UserName:    message.From,
+		XCoordinate: x,
+		YCoordinate: y,
+		IsActive:    true,
+		IsLoaded:    false,
+	}
 	db.Create(&planet)
 	citycenter := database.Citycenter{
 		PlanetName:      message.Vars["planet_name"],
