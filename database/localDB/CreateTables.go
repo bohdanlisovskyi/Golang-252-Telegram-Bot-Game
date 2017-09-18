@@ -1,10 +1,11 @@
 package main
 
 import (
-	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
 	"sync"
+
+	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 var (
