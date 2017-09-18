@@ -6,6 +6,7 @@ import (
 	"github.com/bohdanlisovskyi/telegrambot/tbot"
 )
 
+//UserCreation: creating all dependencies for new user
 func UserCreation(message *tbot.Message) error {
 	db, err := database.GetPostgresConnection()
 	if err != nil {
