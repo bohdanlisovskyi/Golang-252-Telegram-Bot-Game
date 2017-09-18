@@ -26,7 +26,7 @@ func Conn() (db *gorm.DB, err error) {
 type Planet struct {
 	Id          int    `gorm:"primary_key;AUTO_INCREMENT"`
 	UserName    string `gorm:"not null;unique"`
-	PlanetName  string `gorm:"not null;unique"`
+	PlanetName  string `gorm:"not null"`
 	XCoordinate int
 	YCoordinate int
 	IsActive    bool
