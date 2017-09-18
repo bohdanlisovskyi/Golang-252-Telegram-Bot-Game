@@ -13,16 +13,15 @@ func UserCreation(message *tbot.Message) error {
 	}
 	plan := &database.Planet{}
 	db.Last(plan)
-	last_id := plan.Id
-	x, y := algo.PlaceNewPlanet(last_id)
+	x, y := algo.PlaceNewPlanet(plan.Id)
 	planet := database.Planet{PlanetName: message.Vars["planet_name"], UserName: message.From, XCoordinate: x, YCoordinate: y, IsActive: true, IsLoaded: true}
 	db.Create(&planet)
 	citycenter := database.Citycenter{
 		PlanetName:      message.Vars["planet_name"],
 		Level:           1,
 		PeopleAmount:    10,
-		PeopleMaxAmount: 100,
-		CitycenterKPI:   2,
+		PeopleMaxAmount: 20,
+		CitycenterKPI:   1,
 	}
 	db.Create(&citycenter)
 	resource := database.Resource{
@@ -31,30 +30,30 @@ func UserCreation(message *tbot.Message) error {
 		CrystalAmount: 500,
 	}
 	db.Create(&resource)
-	iron_mine := database.IronMine{
+	ironMine := database.IronMine{
 		PlanetName:      message.Vars["planet_name"],
-		Level:           0,
-		MineKPI:         2,
-		PeopleAmount:    0,
-		PeopleMaxAmount: 0,
+		Level:           1,
+		MineKPI:         1,
+		PeopleAmount:    5,
+		PeopleMaxAmount: 10,
 	}
-	db.Create(&iron_mine)
-	crystal_mine := database.CrystalMine{
+	db.Create(&ironMine)
+	crystalMine := database.CrystalMine{
 		PlanetName:      message.Vars["planet_name"],
-		Level:           0,
-		MineKPI:         2,
-		PeopleAmount:    0,
-		PeopleMaxAmount: 0,
+		Level:           1,
+		MineKPI:         1,
+		PeopleAmount:    5,
+		PeopleMaxAmount: 10,
 	}
-	db.Create(&crystal_mine)
+	db.Create(&crystalMine)
 	cosmodrome := database.Cosmodrome{
 		PlanetName:      message.Vars["planet_name"],
-		Level:           0,
+		Level:           1,
 		CosmodrKPI:      2,
 		ShipAmount:      0,
-		ShipMaxAmount:   0,
+		ShipMaxAmount:   20,
 		FleetsAmount:    0,
-		FleetsMaxamount: 0,
+		FleetsMaxamount: 2,
 	}
 	db.Create(&cosmodrome)
 	return nil
