@@ -18,6 +18,12 @@ func GetPlanetName(userName string) (planetName string, err error)  {
 	return planetName, nil
 }
 
+
+func GetResources(planetName string){
+
+}
+
+
 // IsEnoughResources check if user has enough resources for updating
 func IsEnoughResources(planetName string) (ok bool, err error) {
 	
