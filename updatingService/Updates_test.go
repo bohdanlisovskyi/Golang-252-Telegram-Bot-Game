@@ -2,15 +2,12 @@ package updatingService
 
 import (
 	"testing"
-	"github.com/bohdanlisovskyi/telegrambot/tbot"
 )
 
-
 func TestUpdateCitycenter(t *testing.T) {
-	msg := tbot.Message{nil, nil}
+	//msg := tbot.Message{nil, nil}
 
-	ok, err := UpdateCitycenter(&msg)
-
+	//ok, err := UpdateCitycenter(&msg)
 
 }
 
@@ -29,5 +26,3 @@ func TestUpdateCosmodrome(t *testing.T) {
 func TestUpdateShip(t *testing.T) {
 
 }
-
-

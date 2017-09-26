@@ -3,7 +3,6 @@ package updatingService
 import (
 	"github.com/bohdanlisovskyi/telegrambot/tbot"
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/database"
-	"time"
 	"github.com/bohdanlisovskyi/Golang-252-Telegram-Bot-Game/core/loger"
 )
 
@@ -17,7 +16,6 @@ const (
 	LEVEL3_KPI               = 1.2
 	LEVEL2_UPDATE_TIME       = 259200 //72*60*60
 	LEVEL3_UPDATE_TIME       = 172800 //48*60*60
-
 
 )
 
@@ -33,47 +31,47 @@ func UpdateCitycenter(message *tbot.Message) (ok bool, err error) {
 		return false, err
 	}
 	db.Where("planet_name = ?", planetName).Find(citycenter)
-	currentLevel := citycenter.Level
-	startTime := time.Now().Second()
+	//currentLevel := citycenter.Level
+	//startTime := time.Now().Second()
 
-	switch currentLevel {
-	case 1:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		//endTime := startTime + LEVEL2_UPDATE_TIME
-
-		nextLevel := currentLevel + 1
-		nextPeoplemaxamount := LEVEL2_PEOPLE_MAX_AMOUNT
-		nextCitycenterkpi := LEVEL2_KPI
-		time.Sleep(LEVEL2_UPDATE_TIME)
-
-		db.Model(&citycenter).
-			Updates(map[string]interface{}{"level": nextLevel,
-			"people_maxamount": nextPeoplemaxamount,
-			"citycenter_kpi": nextCitycenterkpi})
-		return true, nil
-	case 2:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		//endTime := startTime + LEVEL3_UPDATE_TIME
-
-		nextLevel := currentLevel + 1
-		nextPeoplemaxamount := LEVEL3_PEOPLE_MAX_AMOUNT
-		nextCitycenterkpi := LEVEL3_KPI
-		time.Sleep(LEVEL3_UPDATE_TIME)
-
-		db.Model(&citycenter).
-			Updates(map[string]interface{}{"level": nextLevel,
-			"people_maxamount": nextPeoplemaxamount,
-			"citycenter_kpi": nextCitycenterkpi})
-		return true, nil
-
-	case 3:
-		loger.Log.Info("Maximum level has been reached")
-		return false, nil
-	}
+	//switch currentLevel {
+	//case 1:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	//endTime := startTime + LEVEL2_UPDATE_TIME
+	//
+	//	nextLevel := currentLevel + 1
+	//	nextPeoplemaxamount := LEVEL2_PEOPLE_MAX_AMOUNT
+	//	nextCitycenterkpi := LEVEL2_KPI
+	//	time.Sleep(LEVEL2_UPDATE_TIME)
+	//
+	//	db.Model(&citycenter).
+	//		Updates(map[string]interface{}{"level": nextLevel,
+	//		"people_maxamount": nextPeoplemaxamount,
+	//		"citycenter_kpi": nextCitycenterkpi})
+	//	return true, nil
+	//case 2:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	//endTime := startTime + LEVEL3_UPDATE_TIME
+	//
+	//	nextLevel := currentLevel + 1
+	//	nextPeoplemaxamount := LEVEL3_PEOPLE_MAX_AMOUNT
+	//	nextCitycenterkpi := LEVEL3_KPI
+	//	time.Sleep(LEVEL3_UPDATE_TIME)
+	//
+	//	db.Model(&citycenter).
+	//		Updates(map[string]interface{}{"level": nextLevel,
+	//		"people_maxamount": nextPeoplemaxamount,
+	//		"citycenter_kpi": nextCitycenterkpi})
+	//	return true, nil
+	//
+	//case 3:
+	//	loger.Log.Info("Maximum level has been reached")
+	//	return false, nil
+	//}
 
 	return false, err
 
@@ -91,27 +89,27 @@ func UpdateIronmine(message *tbot.Message) (ok bool, err error) {
 		return false, err
 	}
 	db.Where("planet_name = ?", planetName).Find(ironMine)
-	currentLevel := ironMine.Level
-	startTime := time.Now().Second()
+	//currentLevel := ironMine.Level
+	//startTime := time.Now().Second()
 
-	switch currentLevel {
-	case 1:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		endTime := startTime + LEVEL2_UPDATE_TIME
-
-	case 2:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		endTime := startTime + LEVEL3_UPDATE_TIME
-
-	case 3:
-		loger.Log.Info("Maximum level has been reached")
-		return false, nil
-	}
-
+	//switch currentLevel {
+	//case 1:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	endTime := startTime + LEVEL2_UPDATE_TIME
+	//
+	//case 2:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	endTime := startTime + LEVEL3_UPDATE_TIME
+	//
+	//case 3:
+	//	loger.Log.Info("Maximum level has been reached")
+	//	return false, nil
+	//}
+	return true, nil
 }
 
 func UpdateCrystalmine(message *tbot.Message) (ok bool, err error) {
@@ -128,25 +126,26 @@ func UpdateCrystalmine(message *tbot.Message) (ok bool, err error) {
 
 	db.Where("planet_name = ?", planetName).Find(crystalMine)
 	currentLevel := crystalMine.Level
-	startTime := time.Now().Second()
+	//startTime := time.Now().Second()
 
 	switch currentLevel {
 	case 1:
 		// Check if resources are enough:
 		//if enough - charge resources from table resources
 
-		endTime := startTime + LEVEL2_UPDATE_TIME
+		//endTime := startTime + LEVEL2_UPDATE_TIME
 
 	case 2:
 		// Check if resources are enough:
 		//if enough - charge resources from table resources
 
-		endTime := startTime + LEVEL3_UPDATE_TIME
+		//endTime := startTime + LEVEL3_UPDATE_TIME
 
 	case 3:
 		loger.Log.Info("Maximum level has been reached")
 		return false, nil
 	}
+	return true, nil
 
 }
 
@@ -163,26 +162,27 @@ func UpdateCosmodrome(message *tbot.Message) (ok bool, err error) {
 	}
 
 	db.Where("planet_name = ?", planetName).Find(cosmodrome)
-	currentLevel := cosmodrome.Level
-	startTime := time.Now().Second()
-
-	switch currentLevel {
-	case 1:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		endTime := startTime + LEVEL2_UPDATE_TIME
-
-	case 2:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		endTime := startTime + LEVEL3_UPDATE_TIME
-
-	case 3:
-		loger.Log.Info("Maximum level has been reached")
-		return false, nil
-	}
+	//currentLevel := cosmodrome.Level
+	//startTime := time.Now().Second()
+	//
+	//switch currentLevel {
+	//case 1:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	endTime := startTime + LEVEL2_UPDATE_TIME
+	//
+	//case 2:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	endTime := startTime + LEVEL3_UPDATE_TIME
+	//
+	//case 3:
+	//	loger.Log.Info("Maximum level has been reached")
+	//	return false, nil
+	//}
+	return true, nil
 
 }
 
@@ -199,25 +199,26 @@ func UpdateShip(message *tbot.Message) (ok bool, err error) {
 	}
 
 	db.Where("planet_name = ?", planetName).Find(ship)
-	currentLevel := ship.Level
-	startTime := time.Now().Second()
+	//currentLevel := ship.Level
+	//startTime := time.Now().Second()
 
-	switch currentLevel {
-	case 1:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		endTime := startTime + LEVEL2_UPDATE_TIME
-
-	case 2:
-		// Check if resources are enough:
-		//if enough - charge resources from table resources
-
-		endTime := startTime + LEVEL3_UPDATE_TIME
-
-	case 3:
-		loger.Log.Info("Maximum level has been reached")
-		return false, nil
-	}
+	//switch currentLevel {
+	//case 1:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	endTime := startTime + LEVEL2_UPDATE_TIME
+	//
+	//case 2:
+	//	// Check if resources are enough:
+	//	//if enough - charge resources from table resources
+	//
+	//	endTime := startTime + LEVEL3_UPDATE_TIME
+	//
+	//case 3:
+	//	loger.Log.Info("Maximum level has been reached")
+	//	return false, nil
+	//}
+	return true, nil
 
 }
