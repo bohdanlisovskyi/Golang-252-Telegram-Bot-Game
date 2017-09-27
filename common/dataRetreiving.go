@@ -15,6 +15,7 @@ func GetPlanetName(userName string) (planetName string, err error) {
 	return planetName, nil
 }
 
+// GetResources retrieve current amount of iron and crystal resources for particular user
 func GetResources(planetName string) (ironAmount, crystalAmount int, err error) {
 	resource := &database.Resource{}
 	db, err := database.GetPostgresConnection()
